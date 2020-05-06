@@ -1,13 +1,32 @@
 const xlsx = require("xlsx");
+const _ = require("lodash")
+const uuid = require('uuid')
 
-module.exports.exposeData = (filePath) => {
-    const wb = xlsx.readFile(filePath, { cellDates: true })
+module.exports.wb = (filePath) => {
+   return xlsx.readFile(filePath, { cellDates: true }) 
+}
 
-    const wsList = wb.SheetNames;
+module.exports.toJson = (workSheet) => {
+   return xlsx.utils.sheet_to_json(workSheet) 
+}
 
-    const data = wsList.map(ws => {
-        return { [ws]: xlsx.utils.sheet_to_json(wb.Sheets[ws]) }
+module.exports.toXlsx = (jsonData) => {
+   const newWorkBook = xlsx.utils.book_new()
+   const newWorkSheet = xlsx.utils.json_to_sheet(jsonData)
+
+   xlsx.utils.book_append_sheet(newWorkBook, newWorkSheet, 'Repayments')
+
+   const id = uuid.v4()
+   xlsx.writeFile(newWorkBook, `Repayments_${id}.xlsx`)
+}
+
+
+module.exports.getSpecifiedSheet = (workBook, name) => {
+    const workSheet = workBook.SheetNames.map(sheetName => {
+        if (sheetName === name) {
+            return xlsx.utils.sheet_to_json(workBook.Sheets[sheetName])
+        }
     })
 
-    return data
+    return _.compact(workSheet)
 }
