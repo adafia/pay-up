@@ -22,9 +22,9 @@
   - compute overides (upload records with specified SeasonIDs)
   - update customer summaries
   - display computed data
+  - cascade
 
 ## Estimate on outstanding work
- - cascade                      [1 day] 
  - Overpaid                     [5 hours]
  - validate uploads             [2 hours]
  - Unit testing                 [3 hours]
