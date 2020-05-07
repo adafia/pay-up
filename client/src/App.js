@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
 import './App.css';
 import Table from './table/Table'
 import Processed from './table/Processed'
+
 
 class App extends Component {
   state = {
@@ -25,11 +28,13 @@ class App extends Component {
 
     axios.post("http://localhost:5000/upload", data, { 
       // receive two    parameter endpoint url ,form data
-    }).then(res => { 
+    }).then(res => {
         this.setState({
           ...this.state,
           data: res.data
         })
+    }).catch(err => {
+      toast.error(err.response.data)
     })
   }
 
@@ -51,6 +56,7 @@ class App extends Component {
   render () {
     return (
       <div>
+        <ToastContainer />
         <div className="row" style={{ marginTop: '40px', marginLeft: '20px'}}>
 	        <div className="col-md-2">
             <form method="post" action="#" id="#">

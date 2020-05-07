@@ -1,5 +1,4 @@
 import React from 'react'
-import Moment from 'react-moment'
 
 const Processed = ({ data }) => {
 
@@ -13,7 +12,6 @@ const Processed = ({ data }) => {
                     <td>{record.Credit}</td>
                     <td>{record.TotalRepaid}</td>
                     <td>{record.init}</td>
-                    <td><Moment format='YYYY/MM/DD'>{record.Date}</Moment></td>
                 </tr>
             )
         })
@@ -31,7 +29,6 @@ const Processed = ({ data }) => {
             <th scope="col">Credit</th>
             <th scope="col">Total Repaid</th>
             <th scope="col">init Total Repaid</th>
-            <th scope="col">Date</th>
             </tr>
         </thead>
         <tbody>

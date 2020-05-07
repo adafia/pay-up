@@ -1,5 +1,4 @@
 import React from 'react'
-import Moment from 'react-moment'
 
 const Table = ({ data }) => {
 
@@ -13,7 +12,7 @@ const Table = ({ data }) => {
                     !record.SeasonID ? <td> - </td> : <td>{record.SeasonID}</td>
                     }
                     <td>{record.Amount}</td>
-                    <td><Moment format='YYYY/MM/DD'>{record.Date}</Moment></td>
+                    <td>{record.Date}</td>
                 </tr>
             )
         })
