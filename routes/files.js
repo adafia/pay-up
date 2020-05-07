@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const { computePayment } = require('../lib/service')
+const { upload, compute, save } = require('../lib/service')
 
-router.post('/upload', computePayment)
+router.post('/upload', upload)
+router.post('/compute', compute)
+router.post('/approved', save)
 
 
 module.exports = router;
