@@ -11,7 +11,6 @@ const Processed = ({ data }) => {
                     <td>{record.SeasonID}</td>
                     <td>{record.Credit}</td>
                     <td>{record.TotalRepaid}</td>
-                    <td>{record.init}</td>
                 </tr>
             )
         })
@@ -19,7 +18,6 @@ const Processed = ({ data }) => {
 
     return (
         <>
-        <h4>Preview of Customer Summaries</h4>
         <table className="table">
         <thead>
             <tr>
@@ -28,7 +26,6 @@ const Processed = ({ data }) => {
             <th scope="col">SeasonID</th>
             <th scope="col">Credit</th>
             <th scope="col">Total Repaid</th>
-            <th scope="col">init Total Repaid</th>
             </tr>
         </thead>
         <tbody>

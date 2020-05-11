@@ -1,6 +1,13 @@
 import React from 'react'
 
-const Table = ({ data }) => {
+const Unprocessed = ({ data }) => {
+
+    const formatDate = (date) => {
+        const d = new Date(date)
+        const dtf = new Intl.DateTimeFormat('en', { year: 'numeric', month: 'short', day: '2-digit' }) 
+        const [{ value: mo },,{ value: da },,{ value: ye }] = dtf.formatToParts(d)
+        return `${da}-${mo}-${ye}`
+    }
 
     const renderData = () => {
         return data.map((record, index) => {
@@ -12,7 +19,7 @@ const Table = ({ data }) => {
                     !record.SeasonID ? <td> - </td> : <td>{record.SeasonID}</td>
                     }
                     <td>{record.Amount}</td>
-                    <td>{record.Date}</td>
+                    <td>{formatDate(record.Date)}</td>
                 </tr>
             )
         })
@@ -20,7 +27,6 @@ const Table = ({ data }) => {
 
     return (
         <>
-        <h4>Preview of Uploaded Repayment Records</h4>
         <table className="table">
         <thead>
             <tr>
@@ -41,4 +47,4 @@ const Table = ({ data }) => {
 
 
 
-export default Table
+export default Unprocessed
